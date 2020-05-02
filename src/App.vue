@@ -1,28 +1,57 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <header>
+      <NavBar />
+    </header>
+    <section>
+      <OrderCard
+        v-for="order in orders"
+        :key="order.index"
+        :order="order"
+      />
+      <p class="total" v-show="orders.length > 0">共計：${{ total }}</p>
+    </section>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import NavBar from './components/navBar.vue'
+import OrderCard from './components/orderCard.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    NavBar,
+    OrderCard
+  },
+  data () {
+    return {
+    }
+  },
+  computed: {
+    total() {
+      let total = 0
+      return this.orders.length === 0?
+        total:
+        this.orders.reduce(
+          function(total, el) {
+            return total + (el.price * el.quantity);
+          }, 0
+        );
+    },
+    orders() {
+      return this.$store.getters.orders
+    }
   }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+.total {
+  margin: 15px 0;
+  font-size: 30px;
+  text-align: right;
+  color: $color-orangered;
 }
 </style>
