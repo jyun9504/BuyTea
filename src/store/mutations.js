@@ -4,9 +4,9 @@ const mutations = {
       return el.id === data.id ? data : el
     })
   },
-  // addOrder (state, data) {
-  //   state.orders = state.orders.concat(data)
-  // },
+  newOrder (state, data) {
+    state.orders = state.orders.concat(data)
+  },
   removeOrder (state, data) {
     state.orders.splice(state.orders.indexOf(data), 1)
   }

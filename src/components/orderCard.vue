@@ -1,7 +1,7 @@
 <template>
   <div class="order-card">
     <div class="cancel">
-      <a class="btn btn--cancel" href="#">×</a>
+      <a class="btn btn--cancel" href="#" @click="removeOrder">×</a>
     </div>
     <div class="content">
       <h1 class="content__name">{{ order.name }}</h1>
@@ -24,6 +24,9 @@ export default {
       order: Object
   },
   methods: {
+    removeOrder () {
+      this.$store.commit('removeOrder', this.order);
+    },
     increaseQuantity () {
       let data = Object.assign({}, this.order);
       data.quantity++;
