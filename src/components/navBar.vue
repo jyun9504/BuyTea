@@ -1,21 +1,20 @@
 <template>
   <div class="navbar">
 		<a class="btn btn--brand" href="#">BuyTea</a>
-		<a class="btn btn--addBtn" href="#">NewOrder</a>
+		<a class="btn btn--addBtn" href="#" @click="$emit('togglePopup')">NewOrder</a>
 	</div>
 </template>
 
 <script>
-export default {
-	
-}
+export default {}
 </script>
 
 <style scoped lang="scss">
 
 .navbar {
-	height: 10rem;
-	background-color: $color-green-light;
+	height: 6.5rem;
+	max-width: 114rem;
+	margin: 0 auto;
 	padding: 0 2rem;
 	position: relative;
 	font-weight: 600;
@@ -31,14 +30,16 @@ export default {
 
 	&--brand {
 		font-size: 4rem;
-		font-weight: 500;
+		letter-spacing: .5rem;
+		text-transform: uppercase;
 	}
 
 	&--addBtn {
-		border: solid 5px;
-		border-radius: 5px;
-		font-size: 3rem;
-		padding: .5rem 1rem;
+		border: solid .3rem;
+		border-radius: .2rem;
+		font-size: 1.5rem;
+		letter-spacing: .2rem;
+		padding: 1rem;
 		right: 2rem;
 	}
 }

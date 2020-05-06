@@ -1,31 +1,65 @@
 <template>
   <div id="app">
-    <header>
-      <NavBar />
+    <header class="header">
+      <NavBar 
+        @togglePopup="togglePopup"
+      />
     </header>
-    <section>
+    <main class="main">
+      <h1 class="main__heading">your order</h1>
       <OrderCard
         v-for="order in orders"
-        :key="order.index"
+        :key="order.id"
         :order="order"
       />
-      <p class="total" v-show="orders.length > 0">共計：${{ total }}</p>
-    </section>
+    </main>
+    <div class="footer" v-show="orders.length > 0">
+      <p class="footer__total">Total：</p>    
+      <p class="footer__total">${{ total }}</p>
+    </div>
+    <Popup 
+      v-show="isPopupShow"
+      @togglePopup="togglePopup"
+      @submit="addOrder"
+    >
+      <OrderForm 
+        :isWarningShow="isWarningShow"
+        :name="newName"
+        :description="newDescription"
+        :price="newPrice"
+        :quantity="newQuantity"
+        @handleName="(val) => { this.newName = val }"
+        @handleDescription="(val) => { this.newDescription = val }"
+        @handlePrice="(val) => { this.newPrice = val }"
+        @handleQuantity="(val) => { this.newQuantity = val }"
+      />
+    </Popup>
   </div>
 </template>
 
 <script>
 import NavBar from './components/navBar.vue'
 import OrderCard from './components/orderCard.vue'
+import OrderForm from './components/orderForm.vue'
+import Popup from './components/popup.vue'
+
 
 export default {
   name: 'App',
   components: {
     NavBar,
-    OrderCard
+    OrderCard,
+    OrderForm,
+    Popup
   },
   data () {
     return {
+      isPopupShow: false,
+      isWarningShow: false,
+      newName: '',
+      newDescription: '',
+      newPrice: 20,
+      newQuantity: 1,
     }
   },
   computed: {
@@ -35,23 +69,81 @@ export default {
         total:
         this.orders.reduce(
           function(total, el) {
-            return total + (el.price * el.quantity);
+            return total + (el.price * el.quantity)
           }, 0
         );
     },
     orders() {
       return this.$store.getters.orders
     }
+  },
+  methods: {
+    togglePopup() {
+      this.isPopupShow = !this.isPopupShow;
+    },
+    addOrder() {
+      if (this.newName === ''){
+        this.isWarningShow = true;
+        return
+      }
+      this.isWarningShow = false;
+      const data = {
+        id: this.randomId(),
+        name: this.newName,
+        description: this.newDescription,
+        price: this.newPrice,
+        quantity: this.newQuantity
+      };
+      this.$store.commit('newOrder', data);
+      this.clearForm();
+      this.togglePopup();
+    },
+    randomId() {
+      return Math.random().toString(36).substr(2);
+    },
+    clearForm() {
+      this.newName = '';
+      this.newDescription = '';
+      this.newPrice = 20;
+      this.newQuantity = 1;
+    }
   }
 }
 </script>
 
 <style lang="scss">
+.header {
+  background-color: $color-green-light;
+}
 
-.total {
-  margin: 15px 0;
-  font-size: 30px;
-  text-align: right;
-  color: $color-orangered;
+.main {
+  max-width: 114rem;
+  margin: 0 auto;
+
+  &__heading {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 4rem;
+    font-weight: 600;
+    letter-spacing: .2rem;
+    padding: 1rem 0;
+    color: $color-green;
+    border-bottom: solid .3rem $color-green-light;
+  }
+}
+
+.footer {
+  max-width: 114rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  
+  &__total {
+    padding: 2rem;
+    font-size: 30px;
+    text-align: right;
+    color: $color-black;
+    font-style: italic;
+  }
 }
 </style>

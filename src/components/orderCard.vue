@@ -8,7 +8,7 @@
       <p class="content__description">{{ order.description }}</p>
     </div>
     <div class="price">
-      <p class="price__text">${{ order.price }}</p>
+      <em class="price__text">${{ order.price }}</em>
     </div>
     <div class="quantity">
       <a class="btn btn--quantity" href="#" @click="decreaseQuantity">−</a>
@@ -49,8 +49,10 @@ export default {
 
 .order-card {
   display: flex;
-  border-bottom: solid .5rem $color-green-light;
+  border-bottom: solid .3rem $color-green-light;
   padding-bottom: 1rem;
+  max-width: 114rem;
+  margin: 0 auto;
 }
 
 .cancel {
@@ -58,39 +60,40 @@ export default {
 }
 
 .content {
-  width: 66.5rem;
-  min-width: 7rem;
+  width: 82.5rem;
+  min-width: 6rem;
 
   &__name {
-    font-size: 4rem;
-    line-height: 7rem;
+    font-size: 3rem;
+    line-height: 6.5rem;
     color: $color-black;
   }
   &__description {
-    font-size: 2rem;
+    font-size: 1.7rem;
     line-height: 2rem;
     color: $color-grey;
   }
 }
 
 .price {
-  min-width: 20rem;
+  min-width: 10rem;
   word-break: break-all;
-  @include verticalCenter;
 
   &__text {
-    font-size: 4rem;
-    color: $color-orangered;
+    font-size: 3rem;
+    line-height: 6.5rem;
+    font-style: italic;
   }
 }
 
 .quantity {
-  min-width: 20rem;
-  @include verticalCenter;
-
+  min-width: 15rem;
+  padding-top: 1rem;
+  
+  display: flex;
   &__text {
-    font-size: 4rem;
-    color: $color-black;
+    font-size: 3rem;
+    line-height: 4.5rem;
   }
 }
 
@@ -102,12 +105,18 @@ export default {
     display: flex;
     justify-content: center;
     min-width: 7.5rem;
-    font-size: 7.5rem;
+    font-size: 6rem;
   }
 
   &--quantity {
-    font-size: 5rem;
+    height: 4rem;
+    width: 4rem;
+    @include verticalCenter;
+    border-radius: 5rem;
+    font-size: 3rem;
+    color: $color-white;
     margin: 0 1rem;
+    background-color: $color-green-light;
   }
 }
 </style>
