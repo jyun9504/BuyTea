@@ -12,11 +12,11 @@
 
 - vue-cli 快速建立 vue 專案
 - 元件化將整個 App 切分成如下
-> App/
->  Navbar (導覽列)
->  OrderCard （訂單項目）
->  OrderForm（訂購表單）
->  PopUp (彈窗)
+> App/  
+>  Navbar (導覽列)  
+>  OrderCard（訂單項目）  
+>  OrderForm（訂購表單）  
+>  PopUp (彈窗)  
 - 使用 Sass 切版與製作樣式、RWD
 - 以 vuex 管理元件狀態
 
