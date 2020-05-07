@@ -30,20 +30,20 @@ export default {
   },
   methods: {
     removeOrder () {
-      this.$store.commit('removeOrder', this.order);
+      this.$store.dispatch('removeOrder', this.order);
     },
     increaseQuantity () {
       let data = Object.assign({}, this.order);
       data.quantity++;
-      this.$store.commit('updateOrder', data);
+      this.$store.dispatch('updateOrder', data);
     },
     decreaseQuantity () {
       if (this.order.quantity === 1) {
-        this.$store.commit('removeOrder', this.order);
+        this.$store.dispatch('removeOrder', this.order);
       }else{
         let data = Object.assign({}, this.order);
         data.quantity--;
-        this.$store.commit('updateOrder', data);
+        this.$store.dispatch('updateOrder', data);
       }
     }
   }

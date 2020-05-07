@@ -100,7 +100,7 @@ export default {
         price: this.newPrice,
         quantity: this.newQuantity
       };
-      this.$store.commit('newOrder', data);
+      this.$store.dispatch('newOrder', data);
       this.clearForm();
       this.togglePopup();
     },
@@ -112,7 +112,7 @@ export default {
         price: this.newPrice,
         quantity: this.newQuantity
       }
-      this.$store.commit('updateOrder', data)
+      this.$store.dispatch('updateOrder', data)
       this.clearForm();
       this.togglePopup();
     },
