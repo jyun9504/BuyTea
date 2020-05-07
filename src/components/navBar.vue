@@ -43,4 +43,12 @@ export default {}
 		right: 2rem;
 	}
 }
+
+@include lessThan($breakpoints-sm) {
+	.btn {
+		&--brand {
+			font-size: 3rem;
+		}
+	}
+}
 </style>

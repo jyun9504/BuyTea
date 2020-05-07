@@ -67,7 +67,8 @@ export default {
 .content {
   width: 82.5rem;
   min-width: 6rem;
-
+  word-wrap:break-word;
+  
   &__name {
     font-size: 3rem;
     line-height: 6.5rem;
@@ -94,8 +95,8 @@ export default {
 .quantity {
   min-width: 15rem;
   padding-top: 1rem;
-  
   display: flex;
+
   &__text {
     font-size: 3rem;
     line-height: 4.5rem;
@@ -128,5 +129,23 @@ export default {
       height: 2.5rem;
       width: 2.5rem;
   }
+}
+@include lessThan($breakpoints-sm) {
+  .order-card {
+    flex-wrap: wrap;
+    padding: 2rem;
+  }
+
+  .price {
+    width: calc(100% - 190px);
+    text-align: right;
+    padding-right: 2rem;
+  }
+
+  .quantity {
+    width: calc(150px);
+    justify-content: flex-end;
+  }
+
 }
 </style>
