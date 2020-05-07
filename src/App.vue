@@ -11,6 +11,7 @@
         v-for="order in orders"
         :key="order.id"
         :order="order"
+        @handleEdit="handleEdit"
       />
     </main>
     <div class="footer" v-show="orders.length > 0">
@@ -21,6 +22,8 @@
       v-show="isPopupShow"
       @togglePopup="togglePopup"
       @submit="addOrder"
+      @edit="editOrder"
+      :type="popupType"
     >
       <OrderForm 
         :isWarningShow="isWarningShow"
@@ -56,6 +59,8 @@ export default {
     return {
       isPopupShow: false,
       isWarningShow: false,
+      popupType: 'add',
+      orderID: '',
       newName: '',
       newDescription: '',
       newPrice: 20,
@@ -78,7 +83,8 @@ export default {
     }
   },
   methods: {
-    togglePopup() {
+    togglePopup(type = 'add') {
+      this.popupType = type;
       this.isPopupShow = !this.isPopupShow;
     },
     addOrder() {
@@ -98,6 +104,18 @@ export default {
       this.clearForm();
       this.togglePopup();
     },
+    editOrder() {
+      const data = {
+        id: this.orderID,
+        name: this.newName,
+        description: this.newDescription,
+        price: this.newPrice,
+        quantity: this.newQuantity
+      }
+      this.$store.commit('updateOrder', data)
+      this.clearForm();
+      this.togglePopup();
+    },
     randomId() {
       return Math.random().toString(36).substr(2);
     },
@@ -106,6 +124,14 @@ export default {
       this.newDescription = '';
       this.newPrice = 20;
       this.newQuantity = 1;
+    },
+    handleEdit(data) {
+      this.orderID = data.id;
+      this.newName = data.name;
+      this.newDescription = data.description;
+      this.newPrice = data.price;
+      this.newQuantity = data.quantity;
+      this.togglePopup('edit');
     }
   }
 }

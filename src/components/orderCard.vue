@@ -4,7 +4,12 @@
       <a class="btn btn--cancel" href="#" @click="removeOrder">×</a>
     </div>
     <div class="content">
-      <h1 class="content__name">{{ order.name }}</h1>
+      <h1 class="content__name">
+        {{ order.name }}
+        <a class="btn btn--edit" @click="$emit('handleEdit', order)" href="#" >
+          <img class="btn--edit-img" src="../assets/imgs/edit.svg" alt="Edit">
+        </a>
+      </h1>
       <p class="content__description">{{ order.description }}</p>
     </div>
     <div class="price">
@@ -117,6 +122,11 @@ export default {
     color: $color-white;
     margin: 0 1rem;
     background-color: $color-green-light;
+  }
+
+  &--edit-img {
+      height: 2.5rem;
+      width: 2.5rem;
   }
 }
 </style>

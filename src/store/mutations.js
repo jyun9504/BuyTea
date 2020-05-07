@@ -1,5 +1,6 @@
 const mutations = {
   updateOrder (state, data) {
+    console.log(state, data);
     state.orders = state.orders.map(el => {
       return el.id === data.id ? data : el
     })

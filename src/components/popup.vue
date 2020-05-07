@@ -9,7 +9,7 @@
         <slot></slot>
       </div>
       <div class="popup__footer">
-        <a href="#" class="btn btn--send" @click="$emit('submit')">送出</a>
+        <a href="#" class="btn btn--send" @click="$emit(type === 'add' ? 'submit' : 'edit')">送出</a>
       </div>
     </div>
 	</div>
@@ -17,7 +17,12 @@
 
 <script>
 export default {
-	
+	props: {
+      type: {
+        type: String,
+        default: 'add'
+      }
+    }
 }
 </script>
 
