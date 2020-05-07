@@ -8,5 +8,5 @@ module.exports = {
       }
     }
   },
-  publicPath: process.env.NODE_ENV === 'production' ? '/buytea/dist/' : '/'
+  publicPath: process.env.NODE_ENV === 'production' ? '/BuyTea/dist/' : '/'
 }
