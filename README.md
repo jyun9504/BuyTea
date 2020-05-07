@@ -8,7 +8,7 @@
 - 支援RWD
 
 
-## 開發過程：
+## 開發簡述：
 
 - vue-cli 快速建立 vue 專案
 - 元件化將整個 App 切分成如下
@@ -17,7 +17,7 @@
 >  OrderCard （訂單項目）
 >  OrderForm（訂購表單）
 >  PopUp (彈窗)
-- 使用 Sass 切版與製作樣式 RWD
+- 使用 Sass 切版與製作樣式、RWD
 - 以 vuex 管理元件狀態
 
 
@@ -25,6 +25,10 @@
 - vue-cli
 - vuex
 - sass
+
+
+### To Do
+RWD
 
 
 ## Project setup
@@ -42,5 +46,3 @@ npm run serve
 npm run build
 ```
 
-### To Do
-RWD
