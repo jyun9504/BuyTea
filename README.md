@@ -1,6 +1,6 @@
 # BuyTea
 
-[DEMO](https://jyun9504.github.io/BuyTea/dist/)
+[DEMO](https://jyun9504.github.io/buytea/dist/)
 
 ## 功能：
 - 簡易的飲料訂單功能，新增、編輯、刪除訂單
